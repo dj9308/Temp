@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form method="post" action="/mvc/meeting"> <!-- 방명록 작성 -->
+이름 : <input type="text"  name="name" >
+<br>
+미팅 목적 : <br>
+<textarea rows="30" cols="30" name = "content"></textarea>
+<br>
+날짜 : <input type="datetime-local" name="date">
+<br>
+<input type="submit" value="등록">
+<input type="reset" value="재작성">
+</form>
+<hr>
+<form action="/mvc/meeting" method="get">
+검색어 : <input type="search" name="keyword">
+<input type="submit" value="검색"> <!-- 쿼리가 왔으면 검색 안왓으면 리스트 출력 -->
+<hr>
+<a href="/mvc/meeting">방명록 리스트 보기</a>
+</form>
+</body>
+</html>
