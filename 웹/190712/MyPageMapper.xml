@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.MyPageMapper">
+
+	<!-- 정보 수정 -->
+ 	<select id="info" parameterType="String" resultType="vo.MyPageVO">
+ 		SELECT MID, PW, EMAIL, PHONE FROM MEMBERINFO WHERE MID = #{mid}
+ 	</select>
+ 		<update id="update"  parameterType="vo.MyPageVO"  >
+		UPDATE MEMBERINFO SET PW = #{pw} WHERE MID = #{mid}
+	</update>
+	 		<update id="updatepm"  parameterType="vo.MyPageVO"  >
+		UPDATE MEMBERINFO SET EMAIL = #{email}, PHONE = #{phone} WHERE MID = #{mid}
+	</update>
+	<!-- 장바구니 -->
+	
+	
+	<!-- 리뷰 확인 -->
+<select id="reviewInfo" parameterType="int" resultType="vo.MyPageReviewVO">
+ 		SELECT RCONTENT, NAME, writedate, GRADE FROM REVIEW JOIN FESTIVAL USING (${fid}) ;
+ 	</select>
+ 	
+</mapper>
