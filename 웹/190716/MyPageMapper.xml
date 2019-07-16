@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.MyPageMapper">
+
+	<!-- 정보 수정 -->
+ 	<select id="info" parameterType="String" resultType="vo.MyPageVO">
+ 		SELECT MID, PW, EMAIL, PHONE FROM MEMBERINFO WHERE MID = #{mid}
+ 	</select>
+ 		<update id="update"  parameterType="vo.MyPageVO"  >
+		UPDATE MEMBERINFO SET PW = #{pw} WHERE MID = #{mid}
+	</update>
+	 		<update id="updatepm"  parameterType="vo.MyPageVO"  >
+		UPDATE MEMBERINFO SET EMAIL = #{email}, PHONE = #{phone} WHERE MID = #{mid}
+	</update>
+	<!-- 비밀번호확인 -->
+ 	<select id="pw" parameterType="String" resultType="vo.MyPageVO">
+ 		SELECT PW FROM MEMBERINFO WHERE MID = #{mid}
+ 	</select>
+ 	
+	<!-- 장바구니 -->
+<select id="basket" parameterType="vo.MyPageBasketVO" resultType="vo.MyPageBasketVO">
+ 		SELECT f.place, TO_CHAR(opendate, 'yyyy-mm-dd') opendate, f.name 
+ 		FROM FESTIVAL f, myfesta r, festadate d 
+ 		where f.fid = r.fid and r.fid=d.fid
+ 		and r.mid = #{mid}
+ 	</select>
+
+<select id="reviewInfo" parameterType="vo.MyPageReviewVO" resultType="vo.MyPageReviewVO">
+ 		SELECT name, rcontent, TO_CHAR(writedate, 'yyyy-mm-dd') writedate, grade FROM FESTIVAL f, REVIEW r where r.mid = #{mid} and f.fid = r.fid
+ 	</select>
+
+</mapper>
