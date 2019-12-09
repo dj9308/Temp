@@ -26,10 +26,94 @@
 5. 기본 프로젝트 구조 
    - Java부분에는 MVC 관련 패키지를 정의해준다.
    - application 패키지에는 스프링을 단독 실행할 수 있는 클래스 파일이 있다.
+     (서버와 같은 역할)
    - config 파일은 기존 xml에서 설정했던 여러 정보들을 자바 코드로 설정하는 클래스들을 정의한 패키지이다.
    - 나머지는 controller, dao, service 등 MVC에 필요한 패키지이다.
    - MVC 관련 패키지들은 반드시 @SpringBootApplication 패키지(루트 패키지)의 하위 패키지에 있어야 정상적인 Component Scan이 가능하다. 
    - resources에는 sql쿼리문이 작성되는 mapper파일, css, js, image 등의 정적파일들이 저장되는 static 파일, 스프링 부트에서 환경설정을 위한 application properties가 있다
    - 처음 생성시 src에는 하위로 webapp까지 밖에 없다. 따라서 추가적으로 스프링 프레임워크 환경과 동일하게 하기 위해 WEB-INF를 만들어주고 하위에 views등의 파일을 만들어준다.
+
+### 배운 것
+
+- model 설정 부분
+
+  - model은 db중 테이블 부터. database는 application.yml에서 설정.
+
+  - java 이름 지정시 단수로 쓸 것. 또한 이름이 예를들어 board.package 일 경우 BoardPackage.java 로 설정할 것.
+
+  - ```java
+    @Entity
+    @Table(name = "boards") // 테이블 이름과 매칭하는 부분. sql 테이블 이름은 복수로 할 것.
+    // 개발자들간의 약속임.
+    public class Board {
+    	@Id
+    	@GeneratedValue
+    	private int id;
+    	
+    	@Column(length = 85, nullable = false)
+    	private String title;
+    	
+    	@Column(length = 85, nullable = false) // 또한 변수가 중복되는 면이 있어도 하나씩 세팅을 표현할 것. (개발자들의 약속)
+    	private String contents;
+    	
+    	@ManyToOne(fetch=FetchType.LAZY)
+    	@JoinColumn(name = "type_id")
+    	private Type types;
+    
+    	public int getId() {
+    		return id;
+    	}
+    }
+    ```
+
+  - 테이블 설정은 model에서만 하며, CRUD관련 구문은  Spring Boot가 migration할 때 알아서 해줌. 그래서 따로 코드로 쓸 필요가 없다.
+
+- repository 부분
+
+  - 설명을 들었지만 다시 조사해서 들어야 할듯
+
+- resources 부분
+
+  - db.migration : CRUD 코딩 확인 가능
+  - templates / templates.board : 구분한 이유: templates는 메인페이지, templates.boards는  board 테이블 관련 html로 구분하기 위해. (django 배웠을때 templates안에 movies, articles 폴더로 나눈것과 동일)
+
+- application.yml 부분
+
+  - ```java
+    spring:
+      main:
+        allow-bean-definition-overriding: true
+      datasource:
+        username: polestar	//이름
+        password: xray21	//비번
+        url: jdbc:mysql://localhost:3306/polestar?characterEncoding=UTF-8&serverTimezone=UTC
+    // 포트번호/database명 설정부분
+    // 나머지는 건들 필요 음슴
+        driverClassName: com.mysql.cj.jdbc.Driver
+      devtools:
+        livereload:
+          enabled: true
+      jpa:
+        hibernate:
+          ddl-auto: none
+        show-sql: true
+        
+    jasypt:
+      encryptor:
+        bean: jasyptStringEncrptor
+    
+    logging:
+      level:
+        org:
+          springframework:
+            web: DEBUG
+            security: DEBUG
+          hibernate: DEBUG
+    
+    spring.flyway.baseline-on-migrate : true
+    
+    ```
+
+  - 
 
 http://blog.naver.com/PostView.nhn?blogId=scw0531&logNo=221066404723&parentCategoryNo=&categoryNo=18&viewDate=&isShowPopularPosts=true&from=search
