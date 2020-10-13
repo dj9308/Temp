@@ -23,3 +23,16 @@
 - repair : 마이크레이션 실패한 내역을 수정한다.(삭제, 교체)
 - baseline : flyway로 형상 버전관리를 시작 할 baseline을 설정한다.
 
+### gradle
+
+```
+dependencies {
+	implementation 'org.flywaydb:flyway-core'
+	}
+```
+
+### 오류 피드백
+
+- 인코딩 문제 발생 가능 : eclipse 인코딩 utf8 설정하기
+- flyway 홈페이지의 gradle 코드 삽입시 인식이 안됨 : https://start.spring.io/ 에서 dependency 생성 가능
+

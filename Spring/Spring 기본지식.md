@@ -1,6 +1,6 @@
 # Spring 기본 지식
 
-## Spring 기본 용어 및 정보
+## Spring 관련 기본 용어 및 정보
 
 - Maven: 자바 프로젝트의 빌드(build)를 자동화 해주는 빌드 툴(build tool)
   자바 소스를 compile하고 package해서 deploy하는 일을 자동화 해주는 것.
