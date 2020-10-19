@@ -175,4 +175,5 @@
 - 위의 예제처럼, UserDao에 어떤 ConnectionMaker 구현 클래스의 오브젝트를 이용하게 할지 결정하는 코드가 있다.
 - 정리하면, UserDao와 UserDao가 사용할 ConnectionMaker의 특정 구현 클래스 사이의 관계를 설정해주는 코드이다.
 - 이 관심사를 담은 코드를 UserDao에서 분리하지 않으면 UserDao는 독립적으로 확장 가능한 클래스가 될 수 없다.
-- 
+
+  
