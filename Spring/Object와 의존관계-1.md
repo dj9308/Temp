@@ -196,10 +196,24 @@
 
 - ```java
   //UserDao 생성자 수정
-  
+  @Repository
+  public class UserDao {
+  	private ConnectionMaker connectionmaker;
+	public UserDao(ConnectionMaker connectionMaker) {
+  		this.connectionmaker = connectionMaker;
+  	}
+  }
+  	
   //Service 수정
+  @Service
+  public class UserService {	
+  	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+  		ConnectionMaker connectionMaker = new DConnectionMaker();
+  		UserDao dao = new UserDao(connectionMaker);
+      }
+  }
   ```
-
+  
 - 이럴경우 관심사가 다른 것을 분리할 수 있다.
 
 - 더 이상 DB 생성 방법이나 전략에 따라 UserDao 코드는 안바꿔도 된다.
