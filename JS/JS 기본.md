@@ -143,11 +143,27 @@
   //document.addEventListener(); dom 객체로 scope 설정 가능
   ```
 
-- 
-
 ## 기타
 
-- repl : 온라인 IDE
+- F12 - application - local storage로 이동하면 저장된 변수 및 정보들을 볼 수 있다.
+
+  - ```javascript
+    localStorage.setItem(key,value); // 이것으로 변수 설정 가능
+    localStorage.getItem(key) //value 값을 가져옴
+    //일종의 세션에 저장하는 역할을 할 수 있음.
+    ```
+
+```javascript
+   clockTitle.innerText = `${hours < 10 ? `0${hours}`:hours}:${
+        minutes < 10 ?`0${minutes}` : minutes}:${
+        seconds < 10 ?`0${seconds}` : seconds}`;
+}	// 삼함연산자 및 텍스트에 변수 붙이기.
+
+```
+
+## 참조사항
+
+- repl : 온라인 IDE 
 - [JS 참조문서](https://developer.mozilla.org/ko/)
 
 
