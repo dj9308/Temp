@@ -114,7 +114,7 @@ int main(void){
 - 내부적으로 무자열은 char 자료 타입의 배열로 이루어져 있으며 이것은 포인터와 같다고 할 수 있다.
 - 결과적으로 다양한 문자열을 활용해보고 다룰 수 있는 능력이 필요하다.
 - 영어 문자 같은 경우, 한 문자당 1byte의 크기를 차지한다.
-- 한글, 중국어는 총 2byte의 크기를 차지한다.
+- 한글, 중국어는 총 3byte의 크기를 차지한다.
 - 즉, 10개의 문자(10byte)가 들어갈 수 있는 array가 생성되면(10개의 포인터) 영어는 10개, 한글은 5글자만 들어갈 수 있다.
 - array의 값을 불러오게 되면 해당 위치의 메모리 주소값(array)를 불러온다. 즉, 포인터와 같다.
 - array[1] =7 / &array[1] = 10002
@@ -146,13 +146,198 @@ int main(void){
 
 ## 구조체(Struct)
 
-- 
+- 객체 지향 프로그래밍에서 말하는 클래스의 모체가 되는 것으로 여러 개의 자료형을 묶어서 새로운 자료형을 만들 수 있는 방법.
+
+- 여러개의 데이터를 하나로 묶어서 사용할 수 있도록 하기 위해 만들어진 C언어의 문법이다.
+
+- 배열이 여러 개의 같은 자료형들을 하나로 묶는 것이었다면 구조체는 서로 다른 자료형들을 하나로 묶어서 한꺼번에 다루는 것이다.
+
+- ```CQL
+  #include <stdio.h>
+  #include <stdlib.h>
+  #include <string.h>
+  
+  struct student{
+  	int number;
+  	char name[10];
+  	double grade;
+  };
+  
+  int main(void){
+  	struct student s;
+  	printf("학번을 입력하세요! ");
+  	scanf("%d",&s.number);
+  	printf("이름을 입력하세요! ");
+  	scanf("%s",s.name);  // array의 경우 그 자체로 pointer이기 때문에 &을 넣을 필요가 없다. 
+  	printf("학점을 입력하세요! ");
+  	scanf("%lf",&s.grade); // double의 경우 lf로 해주면된다.
+  	//float의 경우 f. 
+  	
+  	printf("학번 : %d\n",s.number);
+  	printf("이름 : %s\n",s.name);
+  	printf("학점 : %0.1f\n",s.grade);
+  	return 0;
+  }
+  ```
+
+- ```c
+  #include <stdio.h>
+  #include <math.h>
+  
+  struct point{
+  	int x;
+  	int y;
+  };
+  
+  int main(void){
+  	struct point p1, p2; // struct 동시 생성
+  	int xDiff, yDiff;
+  	double distance;
+  	
+  	printf("1번 점의 좌표를 입력하세요. : ");
+  	scanf("%d %d",&p1.x, &p1.y);
+  	
+  	printf("2번 점의 좌표를 입력하세요. : ");
+  	scanf("%d %d",&p2.x, &p2.y);
+  	 
+  	xDiff = p1.x - p2.x;
+  	yDiff = p1.y - p2.y;
+  	
+  	distance = sqrt(xDiff * xDiff+ yDiff * yDiff);
+  	printf("두 점 사이의 거리는 %lf입니다.",distance);
+  	
+  	return 0;
+  }
+  ```
+
+### 활용
+
+```c
+#include <stdio.h>
+#include <math.h>
+
+struct point {
+	int x;
+	int y;
+};
+
+struct rect {  //struct 를 struct에 넣어 관리할 수 있다.
+	struct point p1;
+	struct point p2;
+};
+
+int main(void){
+	struct rect r;
+	int w, h, area, peri;
+	
+	printf("왼쪽 상단의 좌표를 입력하세요.");
+	scanf("%d %d", &r.p1, &r.p2); 
+	
+	printf("오른쪽 상단의 좌표를 입력하세요.");
+	scanf("%d %d", &r.p2, &r.p2);
+	
+	w = abs(r.p2.x - r.p1.x);
+	h = abs(r.p2.y - r.p1.y);
+	
+	area = w*h;
+	peri = 2*w + 2*h; 
+	printf("%d : %d",w,h);
+	printf("사각형의 넓이는 %d이고 둘레는 %d이다.",area,peri);
+	return 0;
+}
+
+```
+
+
+
+```c
+#include <stdio.h>
+#include <math.h>
+
+struct point{
+	int x;
+	int y;
+};
+
+void comparePoint(struct point p1, struct point p2){
+	if(p1.x==p2.x && p1.y==p2.y) {
+		printf("p1, p2는 같다");
+	}
+} // 따로 struct 관련 함수로 만들어서 관리가 가능하다. 
+// 함수를 따로 놓을 경우 훨씬 더 체계적으로 구조가 이루어질 수 있다. 
+
+int main(void){
+	struct point p1, p2;
+	
+	p1.x = 30;
+	p1.y = 10;
+	
+	p2.x = 30;
+	p2.y = 10;
+	
+	comparePoint(p1,p2);
+	
+//	if(p1==p2){ 오류 발생 : struct는 타입이 같아도 직접 비교 불가 
+// 		
+//	} // 구조체 자체는 서로 비교를 못한다. 
+	return 0;
+}
+```
+
+
+
+```c
+#include <stdio.h>
+
+#define SIZE 5
+
+struct student {
+	int number;
+	char name[20];
+	double grade; 
+	 
+};
+
+int main(void){
+	struct student list[SIZE];
+	int i;
+	
+	for(i=0;i<SIZE;i++){
+		printf("학번을 입력하세요. : ");
+		scanf("%d", &list[i].number); 
+		printf("이름을 입력하세요. : ");
+		scanf("%s", &list[i].name); // list의 주소에 접근해야하기 때문에 해당 변수가 문자열이어도 &가 쓰인다.
+		printf("학번을 입력하세요. : ");
+		scanf("%lf", &list[i].grade);
+	}
+	
+    //student[i]가 아닌 list[i]로 쓴다.
+    
+	for(i=0;i<SIZE;i++){
+		printf("학번 : %d, 이름 : %s, 학점 : %.1lf",list[i].number,list[i].name,list[i].grade);
+	};
+	return 0;
+}
+```
 
 
 
 ## 알게된 함수
 
-- gets();
-- strcpy();
-- strcmp();
-- strlen();
+- <string.h>
+  - gets();
+  - strcpy();
+  - strcmp();
+  - strlen();
+- <math.h>
+  - abs();
+
+## 알게된 것
+
+- array는 일종의 포인터이기 때문에 &을 넣을 필요가 없다.(String)
+- double : %lf, float : %f
+- struct를 struct안에 넣어 따로 관리할 수 있다.
+- struct를 parameter로 넣을 수 있다.
+- struct 자체는 비교연산자에 사용할 수 없다.
+- list에 접근할 경우 변수가 String이어도 &를 써야한다.
+- struct point list[size] 일 경우, 표현은 list[i].grade 형식이 된다.
