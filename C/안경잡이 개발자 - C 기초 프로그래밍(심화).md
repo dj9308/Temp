@@ -107,4 +107,52 @@ int main(void){
   }
   ```
 
+
+## 문자열
+
+- 다양한 문자 표현을 나타내기 위해 사용한다.
+- 내부적으로 무자열은 char 자료 타입의 배열로 이루어져 있으며 이것은 포인터와 같다고 할 수 있다.
+- 결과적으로 다양한 문자열을 활용해보고 다룰 수 있는 능력이 필요하다.
+- 영어 문자 같은 경우, 한 문자당 1byte의 크기를 차지한다.
+- 한글, 중국어는 총 2byte의 크기를 차지한다.
+- 즉, 10개의 문자(10byte)가 들어갈 수 있는 array가 생성되면(10개의 포인터) 영어는 10개, 한글은 5글자만 들어갈 수 있다.
+- array의 값을 불러오게 되면 해당 위치의 메모리 주소값(array)를 불러온다. 즉, 포인터와 같다.
+- array[1] =7 / &array[1] = 10002
+
+```c
+#include <stdio.h>
+#include <string.h>	// 문자열 관련 라이브러리	
+
+int main(void){
+	char input[11];
+    gets(input);
+    // 문자열 scan 입력시 배열에 넣어주는 함수
+    
+	char result[5]="Love";
+	strcpy(result,input); // result 문자 안에 input 카피 함수
+	// strcpy string pointer 조작 관련 함수 
+    
+    printf("문자열 비교 : %d\n", strcmp(input,result));
+    	// 사전적으로 동일시 0, one이 앞에있을시 -1, Two가 앞에 있을시 1이 반환된다.
+	// 사전구현, 영단어 암기장 구현시 많이 사용됨. 
+    
+    printf("문자열의 길이: %d\n", strlen(input));
+    // 문자열 길이 반환
+    
+	printf("문자열 복사 : %s\n",result);
+	return 0; 
+}
+```
+
+## 구조체(Struct)
+
 - 
+
+
+
+## 알게된 함수
+
+- gets();
+- strcpy();
+- strcmp();
+- strlen();
