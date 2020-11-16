@@ -310,8 +310,6 @@ int main(void){
 		printf("학번을 입력하세요. : ");
 		scanf("%lf", &list[i].grade);
 	}
-	
-    //student[i]가 아닌 list[i]로 쓴다.
     
 	for(i=0;i<SIZE;i++){
 		printf("학번 : %d, 이름 : %s, 학점 : %.1lf",list[i].number,list[i].name,list[i].grade);
@@ -319,6 +317,95 @@ int main(void){
 	return 0;
 }
 ```
+
+## 파일 입출력
+
+- 파일입출력은 다양한 프로그램을 개발할 때 자주 사용되는 기능이다. 
+
+- 예를 들면 파일 입출력을 통해 현재의 데이터를 저장하고 다시 불러오거나 할 수 있다.
+
+- 프로그램 전반에 사용되는 다양한 데이터를 처리하고 저장하여 보관할 수 있다.
+
+- ``` c
+  #include <stdio.h>
+  // 쓰기
+  int main(void){
+  	FILE *fp = NULL;
+  	fp = fopen("output.txt","w");
+  	// w = 쓰기 모드를 의미한다. r => 읽기 모드를 의미 한다. 
+  	if(fp ==NULL) {
+  		printf("파일 열기에 실패했습니다\n");
+  	}else{
+  		printf("파일 열기에 성공했습니다.\n");
+  	}
+  	fputc('H',fp);  //file에 한글자씩 출력 (fileputcaracter)
+  	fputc('E',fp);
+  	fputc('L',fp);
+  	fputc('L',fp);
+  	fputc('O',fp);
+  	fclose(fp);  // 종료시 항상 fclose를 사용해 파일을 닫을 것. 
+  	return 0;
+  }
+  ```
+
+- ```c
+  #include <stdio.h>
+  // 읽기
+  int main(void){
+  	FILE *fp = NULL;
+  	int c;
+  	
+  	fp = fopen("output.txt","r");
+  	
+  	if(fp == NULL){
+  		printf("파일 열기에 실패했습니다.\n");
+  	}else{
+  		printf("파일 열기에 성공했습니다. \n");
+  	}
+  	
+  	while((c = fgetc(fp)) != EOF){  // EOF : end of file 파일의 끝을 의미한다. 
+  		putchar(c); // 콘솔 창에 char 출력 
+  	}
+  	fclose(fp);
+  	return 0;
+  }
+  ```
+
+- ```c
+  #include <stdio.h>
+  #include <string.h>
+  // 검색
+  int main(void){
+  	FILE *fp;
+  	char fname[256];
+  	char buffer[256];
+  	char word[256];
+  	int line = 0;
+  	
+  	printf("파일 이름을 입력하세요. : ");
+  	scanf("%s",fname);
+  	
+  	printf("탐색할 단어를 입력하세요. : ");
+  	scanf("%s",word);
+  	
+  	if((fp = fopen(fname,"r")) == NULL){
+  		fprintf(stderr,"파일 %s를 열 수 없습니다.\n",fname);  // fprintf : 파일 관련 에러 출력시 사용
+  		// stderr : standard error
+  		return 0;
+  	}
+  	
+  	while(fgets(buffer,256,fp)){
+  		line++;
+  		if(strstr(buffer, word)){ // word가 해당 buffer에 담겨있으면 true 반환한다. 
+  			printf("라인 %d: 단어 %s가 발견되었습니다. \n",line,word); 
+  		}	
+  	}
+  	fclose(fp);
+  	return 0;
+  }
+  ```
+
+- 
 
 
 
@@ -331,6 +418,13 @@ int main(void){
   - strlen();
 - <math.h>
   - abs();
+- 입출력 관련
+  - fopen(이름, w/r);
+  - fputc(char);
+  - EOF
+  - putchar(char);
+  - fprintf(stderr);
+  - strstr(문장, 단어);
 
 ## 알게된 것
 
