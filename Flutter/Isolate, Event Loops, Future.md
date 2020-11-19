@@ -1,4 +1,4 @@
-# Isolates and Event Loops
+# Isolate, Event Loop, Future
 
 ## Isolate
 
@@ -130,4 +130,7 @@
 
 - 
 
-- 
+| sync:  |     int     | Iterator<int> |
+| :----: | :---------: | :-----------: |
+| Async: | Future<int> |  Stream<int>  |
+
