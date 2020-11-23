@@ -7,6 +7,7 @@
   - js의 경우, 웹 브라우저에서만 실행 가능하다.
 - 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고 있다.
 - Node.js와 같은 런타임 환경과 같이 서버 프로그래밍에서도 사용된다.
+- JS의 expression(식)은 instruction이다.
 
 ## ES5
 
@@ -23,7 +24,8 @@
 
 - var : function scope 
   - function에서 선언되면 function이 끝날시 없어짐.
-  - 변수 재선언 가능
+  - 변수 재선언 가능 
+  - 이제 왠만해선 const, let으로 대체되서 쓸 필요가 없다.
 - let :blocked scope
   - 변수 재선언 불가능
 - const : blocked scope
