@@ -23,9 +23,10 @@ Simple Project와 Spring MVC Project의 차이점
 - Spring legacy : 일반적인 Spring Framework 프로젝트이다.
 - Spring Starter Project : Spring boot라는 응용 프로그램의 빠른 개발 프레임워크를 이용한 프로젝트이다. 간단한 라이브러리 추가만으로 필요한 프레임워크들이 모두 포함되는 것이 가능하다.
 - Spring legacy 와 Spring boot의 차이점:
-  1. Spring boot의 경우 웹 컨테이너(Tomcat)를 내장하고 있다.
+  1. Spring boot의 경우 embed Tomcat을 내장하고 있다.
+     - 때문에 JAR 형식으로 배포가 가능하며, JAR의 경우 기본적으로 was가 필요없기 때문에 편리하다.
   2. 최소한의 설정으로 쉽게 Spring Application을 만들기 위한 목적으로 설계된 프레임워크 내의 플랫폼이라 할 수 있다.
-  3. Spring boot로 Set up 할 경우 편리하게 Dependency 문제가 해결되고, 빠르게 웹 어플리케이션을 만들 수 있다.
+  3. Spring boot로 Set up 할 경우 편리하게 Dependency 및 버전 호환 문제가 해결되고, 빠르게 웹 어플리케이션을 만들 수 있다.
   4. 반면 Spring boot 위에서 동작하기 때문에 확장성 등에 있어 모든 부분을 직접 설정해주어야 한다.
   5. 버전 호환 문제가 아직 존재해 REST나 JPA 이용을 위해 Spring boot 1.4 이상의 버전이 필요하다.
   6. Spring boot 버전에 따라 내장 톰캣의 버전에 차이가 생기게 된다.(Spring boot 1.2.4 이상은 Tomcat8, 이하는 Tomcat 7 버전이 사용.)

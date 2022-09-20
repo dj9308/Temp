@@ -1,5 +1,32 @@
 # JPA
 
+## 정의 및 특징
+
+- Java persistence API 의 약자. Java ORM 기술에 대한 API 표준 명세를 말한다.
+
+- ORM : Object Relational Mapping (객체 관계 매핑) / 객체와 RDBMS 테이블을 자동으로 매핑해주는 것.
+
+  - 객체지향 프로그래밍은 클래스를 사용하고, RDBMS는 테이블을 사용하기 때문에 모델간 불일치가 존재한다.
+  - ORM은 객체간 관계를 바탕으로 SQL을 자동으로 생성해서 불일치를 해결한다.
+  - ORM의 경우 직접 쿼리를 작성하지 않고도 객체가 DB에 접근할 수 있다.
+  - 
+
+- JPA는 단순한 명세이기 때문에 JPA만 가지고는 어떤 기술을 사용할 수 없다.
+
+- 실제로 우리는 Spring Data JPA를 사용하는 것이며, 이는 JPA를 간편하게 사용할 수 있도록 만들어놓은 오픈소스이다.
+
+- Hibernate (ORM 프레임워크)는 JPA의 구현체이다.
+
+  - Hibernate : DB의 데이터와 코드를 매핑시켜주는 프레임워크. 비슷한 것이 mybatis이다.
+  - mybatis는 JDBC 드라이버를 사용해 자바 코드와 DB를 매핑해주었다.
+
+- ORM과 SQL MAPPER의 차이점
+
+  - SQL mapper의 경우 직접 SQL 쿼리문을 작성해야 하기 때문에 보안 및 유지보수가 힘들다.
+  - 반면 데이터 필터링이 SQL mapper가 높기 때문에 성능면에서는 SQL mapper가 높을 수 있다.
+
+  
+
 ## Entity 
 
 - 데이터베이스에 저장하기 위해 정의한 클래스(Domain)
