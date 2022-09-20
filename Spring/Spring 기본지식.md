@@ -15,7 +15,30 @@ Simple Project와 Spring MVC Project의 차이점
 - Simple Project : 기본 Spring 구성 및 프로젝트 본성을 사용하여 Java 빌드를 이용해 간단한 Spring 프로젝트 작성.
 - Simple Spring Maven : Spring 라이브러리의 기본 세트를 포함하는 Maven을 사용하여 간단한 Spring 프로젝트 생성.
 - 기본적으로 MVC 형태로 메이븐까지 셋팅이 되어 생성.
-- 
+
+## Servlet-context.xml 루트 설정 방법
+
+```xml
+<!-- root-context.xml에서 다른 xml 파일을 import 하고자 할 때-->
+<import resource="jdbc-config.xml"/>
+
+<!--xml에서 클래스 상대 경로 설정 방법-->
+<bean id="sqlSessionFactory"
+      class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="mapperLocations" value="classpath:mybatis/mappers/*.xml" />
+</bean>
+
+<!--resource 파트의 properties 파일을 만들어 적용하고 싶을 때 사용(환경 설정 변수 이름 작성 요령 추가)-->
+<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+    <property name="driverClass" value="#{jdbc['jdbc.driverClass']}"/>
+    <property name="url" value="#{jdbc['jdbc.url']}"/>
+    <property name="username" value="#{jdbc['jdbc.username']}"/>
+    <property name="password" value="#{jdbc['jdbc.password']}"/>
+</bean>
+```
+
+
 
 ## Spring boot
 
