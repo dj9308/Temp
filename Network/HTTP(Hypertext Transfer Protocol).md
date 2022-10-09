@@ -1,6 +1,6 @@
 # HTTP(Hypertext Transfer Protocol)
 
-## 정의
+## 정의 
 
 - 인터넷상에서 데이터를 주고 받기 위한 서버/클라이언트 모델을 따르는 프로토콜.
 - OSI 7 layer 중 Application(응용) 계층의 프로토콜로, TCP/IP 위에서 작동한다.

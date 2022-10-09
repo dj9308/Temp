@@ -13,7 +13,7 @@
   - 디자인 패턴이란 프로그램이나 어떤 특정한 것을 개발하는 중에 발생했던 문제점들을 정리해서 상황에 따라 간편하게 작용해서 쓸 수 있는 것을 정리하여 특정한 "규약"을 통해 쉽게 쓸 수 있는 형태로 만든 것이다.
   - 만약 다른 이들과 공유를 할 때 깔끔하지 않다면 클래스 함수들을 일일히 다 만들어야 할 것. == 라이브러리나 프레임워크가 그에 따른 예.
 - 사용자 
-- Model, Viewm Controller의 약자.
+- Model, View, Controller의 약자.
 - 하나의 어플리케이션, 프로젝트를 구성할 때 그 구성요소를 세가지의 역할로 구분한 패턴.
 - ![img](https://mblogthumb-phinf.pstatic.net/MjAxNzAzMjVfMjIg/MDAxNDkwNDM4ODMzNjI2.nzDNB5K0LuyP4joE2C4rIbL5Ue2F3at7wiI6ZpuTJN0g.WZ6V-WHZygLYW2WSdzcs7uAiAWgAJe3_H0XdkYKkutkg.PNG.jhc9639/1262.png?type=w800)
 - 사용자가 Controller를 조작하면 controller는 Model을 통해서 데이터를 가져오고 그 정보를 바탕으로 시각적인 표현을 담당하는 View를 제어해서 사용자에게 전달하게됨.
@@ -38,5 +38,4 @@
   - 모델과 같이 변경이 일어났을 때 이른 누군가에게 변경을 알려줘야 하는 방법을 구현해야 함.
   - 뷰에선 화면에서 사용자가 화면에 표시된 내용을 변경하게 되면 이를 모델에게 전달해서 모델을 변경해야 할 것.
   - 재사용 가능하게끔 설계를 해야 하며, 다른 정보들을 표현할 때 쉽게 설계를 해야함.
-  - 
 - https://m.blog.naver.com/jhc9639/220967034588
