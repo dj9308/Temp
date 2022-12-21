@@ -7,7 +7,7 @@
 - Transaction 테스트 중, rollback이 안되는 경우 발생.
 - Batch Insert 구현 중 Multi Row Insert가 안되는 경우 발생.(성능 이슈)
 
-
+---
 
 ## 해결 과정
 
