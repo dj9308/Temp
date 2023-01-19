@@ -237,7 +237,6 @@ public PasswordEncoder passwordEncoder(){
 - @EnableWebSecurity : Security 활성화 Annotation
 - @Configuration : 해당 config Class를 Bean에 등록하게 해주는 Configuration Class로 선언하는 Annotation 
 - csrf().disable() : csrf 인증 토큰 확인 안 하도록 설정.(보안 상 필요할 수 있으나, HTTP 특성 상 서버에 인증 정보를 보관하지 않아서 할 필요X)
-- 
 
 
 ## 출처
