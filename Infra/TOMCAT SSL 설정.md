@@ -1,4 +1,4 @@
-# TOMCAT SSL 설정
+# APACHE WEB SERVER SSL 설정
 
 1. openssl 라이브러리, mod_ssl 다운로드
 
